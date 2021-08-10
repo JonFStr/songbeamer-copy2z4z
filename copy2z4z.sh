@@ -14,12 +14,13 @@ mountdir=songs
 latency=10s
 
 # Signal handling
-sighandler() {
-    pkill -INT fswatch
-    fusermount -uz $mountdir
-    exit
-}
-trap sighandler INT TERM ABRT
+#sighandler() {
+#    echo Signal caught! Shutting down...
+#    pkill -INT fswatch
+#    fusermount -uz $mountdir
+#    exit
+#}
+#trap sighandler INT TERM ABRT
 
 # Setup directories
 cd $workdir
@@ -33,5 +34,7 @@ while [ ! -d $mountdir/2-Zeilig ]; do
     sleep 1
 done
 
+echo SharePoint set up! Launching fswatcher...
+
 # Setup watcher pipeline [r: Recurse path; x: Print events; m: Set monitor to polling; 1>&2: Write to stderr and pipeline for monitoring]
-fswatch -0rxm poll_monitor --event Created --event Updated --event Removed $mountdir/2-Zeilig |tee asdf |xargs -0n1 python copy2z4z.py
+fswatch -0rxm poll_monitor --event Created --event Updated --event Removed $mountdir/2-Zeilig |xargs -0n1 python3 copy2z4z.py
