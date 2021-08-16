@@ -52,11 +52,12 @@ echo "SharePoint set up! Launching fswatcher..."
 # Watcher has to run in Background so the script can monitor for sent Signals
 fswatch -0rxm poll_monitor \
          --event Created --event Updated --event Removed \
-         $mountdir/2-Zeilig \
+         $mountdir/2-Zeilig $mountdir/4-Zeilig \
      |xargs -0rn1 python3 copy2z4z.py &
 child=$(jobs -p 2)
 
 # Wait for fswatcher. This prevents the Shell script from exiting so we can still listen for signals
+echo "Ready to go."
 wait "$child"
 
 # If the watcher exited prematurely (no signal sent from host), call cleanup manually
