@@ -16,5 +16,6 @@ WORKDIR /root
 
 COPY rclone.conf .config/rclone/rclone.conf
 COPY copy2z4z* ./
+RUN chmod +x copy2z4z.sh
 
 ENTRYPOINT ["/root/copy2z4z.sh"]
