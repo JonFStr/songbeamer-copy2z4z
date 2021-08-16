@@ -15,6 +15,6 @@ RUN ./configure && make && make install && make distclean
 WORKDIR /root
 
 COPY rclone.conf .config/rclone/rclone.conf
-COPY copy2z4z* .
+COPY copy2z4z* ./
 
 ENTRYPOINT ["/root/copy2z4z.sh"]
