@@ -27,9 +27,15 @@ def reformat4to2(contents4):
 
 # ====== Functions for Action handling
 # File was removed from 2-Zeilig
-def remove(path):
-    os.remove(path.replace('/2-Zeilig/', '/4-Zeilig/'))
-    print('Removed "' + path + '"')
+def remove(pathOld):
+    pathNew = pathOld.replace('/2-Zeilig/', '/4-Zeilig/') \
+            if '/2-Zeilig/' in pathOld \
+               else pathOld.replace('/4-Zeilig/', '/2-Zeilig/')
+    if os.path.exists(pathNew):
+        os.remove(pathNew)
+        print('Removed "' + pathNew + '"')
+    else:
+        print('Did not remove "' + pathNew + '": File does not exist')
 
 
 # File should be reformatted and copied to the other folder
