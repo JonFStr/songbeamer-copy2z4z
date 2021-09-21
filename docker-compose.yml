@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  songscopy:
+    build:
+      context: .
+    cap_add:
+      - SYS_ADMIN
+    devices:
+      - "/dev/fuse"
+    restart: "unless-stopped"
