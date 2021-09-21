@@ -50,13 +50,14 @@ def copy(pathOld):
 
         # Check if the contents have changed compared with on disk
         # If they haven't, this is probably a loop, break out of it!
-        with open(pathNew, 'r', encoding='ISO-8859-1') as songNew:
-            contentsDisk = songNew.read()
-            if contentsDisk == contentsNew:
-                # Log action to stdout
-                print('Skipped copying "' + pathOld + '" to "' + pathNew +
-                      '" because new content is identical to content on disk')
-                return
+        if os.path.exists(pathNew):
+            with open(pathNew, 'r', encoding='ISO-8859-1') as songNew:
+                contentsDisk = songNew.read()
+                if contentsDisk == contentsNew:
+                    # Log action to stdout
+                    print('Skipped copying "' + pathOld + '" to "' + pathNew +
+                        '" because new content is identical to content on disk')
+                    return
 
         # Write new file
         with open(pathNew, 'w',
