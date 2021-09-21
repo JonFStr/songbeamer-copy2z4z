@@ -80,14 +80,15 @@ action = args.fsevent.split(' ')[-1]
 path = args.fsevent[:-len(action)-1]
 
 # Check if the path points to a .sng file
-if not (path.endswith('.sng') and os.path.isfile(path)):
+if not path.endswith('.sng'):
     print('"' + path + '" is not a .sng file. Skipping...')
     exit(1)
 
-# Call according to event
-if action == 'Removed':
-    remove(path)
-elif action in ('Created', 'Updated'):
+# Check if song was removed from folder (is no longer there)
+if os.path.isfile(path):
     copy(path)
+# Then if the file doesn't exist (anymore), remove the 2nd version
+elif not os.path.exists(path):
+    remove(path)
 else:
     raise NotImplementedError()
