@@ -9,9 +9,12 @@
 # python3
 
 # CONFIG:
+# Working directory
 workdir=.
+# Name of the folder where SharePoint is mounted
 mountdir=songs
-latency=10s
+# Time between checks if files have changed
+latency=5
 
 # Signal handling
 sighandler() {
@@ -19,7 +22,7 @@ sighandler() {
     # Stop watcher
     kill -INT "$child"
     # Wait for watcher to exit before unmounting SharePoint
-    echo "Waiting for fswatcher to exit..."
+    echo -e "Waiting for fswatcher to exit...\n"
     wait "$child"
     # Unmount SharePoint
     fusermount -uz $mountdir
@@ -34,7 +37,7 @@ cd $workdir
 mkdir -p $mountdir
 
 # Mount SharePoint
-rclone mount --vfs-cache-mode writes --dir-cache-time $latency ImmanuelRV-Technik:Songbeamer/Songs $mountdir &
+rclone mount --vfs-cache-mode writes --dir-cache-time ${latency}s ImmanuelRV-Technik:Songbeamer/Songs $mountdir &
 
 # Wait for SharePoint
 while [ ! -d $mountdir/2-Zeilig ]; do
