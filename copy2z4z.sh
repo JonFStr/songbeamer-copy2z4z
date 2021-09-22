@@ -53,10 +53,10 @@ echo "SharePoint set up! Launching fswatcher..."
 # $mountdir/2-Zeilig: Watch in this directory
 # xargs: For every NUL-Seperated entry, launch the python script with this entry as argument
 # Watcher has to run in Background so the script can monitor for sent Signals
-fswatch -0rxm poll_monitor \
+fswatch -rxm poll_monitor \
          --event Created --event Updated --event Removed \
          $mountdir/2-Zeilig $mountdir/4-Zeilig \
-     |xargs -0rn1 python3 copy2z4z.py &
+     |python3 -u copy2z4z-eventhandler.py -l $latency &
 child=$(jobs -p 2)
 
 # Wait for fswatcher. This prevents the Shell script from exiting so we can still listen for signals
