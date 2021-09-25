@@ -15,13 +15,13 @@ args = argparser.parse_args()
 # Reformatting
 def reformat2to4(contents2):
     # Make 'small' line break a comment
-    contents4 = re.sub(r'\n\s*--\s*\n', r'\n#H --\n', contents2)
+    contents4 = re.sub(r'\n\s*--\s*\n', r'\n##H --\n', contents2)
     return contents4
 
 
 def reformat4to2(contents4):
     # Remove comment indicator
-    contents2 = re.sub(r'\n\s*#H --\s*\n', r'\n--\n', contents4)
+    contents2 = re.sub(r'\n\s*#{1,2}H --\s*\n', r'\n--\n', contents4)
     return contents2
 
 
