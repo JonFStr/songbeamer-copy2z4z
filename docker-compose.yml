@@ -6,5 +6,5 @@ services:
     cap_add:
       - SYS_ADMIN
     devices:
-      - "/dev/fuse"
+      - "/dev/fuse:/dev/fuse"
     restart: "unless-stopped"
