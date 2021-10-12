@@ -1,10 +1,11 @@
-version: "3.9"
+version: "3.3"
 services:
   songscopy:
     build:
       context: .
     cap_add:
       - SYS_ADMIN
+    privileged: true
     devices:
       - "/dev/fuse:/dev/fuse"
     restart: "unless-stopped"
