@@ -25,7 +25,7 @@ sighandler() {
     echo -e "Waiting for fswatcher to exit...\n"
     wait "$child"
     # Unmount SharePoint
-    fusermount -uz $mountdir
+    fusermount3 -uz $mountdir
     # Quit the Script
     echo "Done. Exiting..."
     exit

@@ -1,6 +1,6 @@
 FROM alpine
 # Copied from github.com/rclone/rclone/blob/master/Dockerfile
-RUN apk add --no-cache ca-certificates fuse tzdata rclone python3 bash
+RUN apk add --no-cache ca-certificates fuse3 tzdata rclone python3 bash
 #RUN addgroup -g 1009 rclone && adduser -u 1009 -Ds /bin/sh -G rclone rclone
 
 # Install fswatch
