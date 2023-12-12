@@ -1,4 +1,6 @@
 #!/bin/sh
-cd $(dirname $0)
+# Change to script location
+cd "$(dirname "$0")" || exit
+# Build image
 docker build -t songscopy .
-exec docker run --cap-add SYS_ADMIN --device /dev/fuse --privileged=True songscopy $@
+exec docker run songscopy "$@"

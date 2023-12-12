@@ -1,21 +1,11 @@
 FROM alpine
-# Copied from github.com/rclone/rclone/blob/master/Dockerfile
-RUN apk add --no-cache ca-certificates fuse3 tzdata rclone python3 bash
-#RUN addgroup -g 1009 rclone && adduser -u 1009 -Ds /bin/sh -G rclone rclone
-
-# Install fswatch
-WORKDIR /root
-RUN apk add --no-cache file git autoconf automake libtool make g++ texinfo curl
-RUN curl -L 'https://github.com/emcrisostomo/fswatch/releases/download/1.17.1/fswatch-1.17.1.tar.gz' |tar xvz
-
-WORKDIR /root/fswatch-1.17.1
-RUN ./configure && make && make install && make distclean
+# Dependencies
+RUN apk add --no-cache rclone python3
 
 # Own config
 WORKDIR /root
 
 COPY rclone.conf .config/rclone/rclone.conf
-COPY copy2z4z* ./
-RUN chmod +x copy2z4z.sh
+COPY *.py /app/
 
-ENTRYPOINT ["/root/copy2z4z.sh"]
+ENTRYPOINT ["/usr/bin/python3", "/app/main.py"]
