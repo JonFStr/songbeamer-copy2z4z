@@ -45,8 +45,19 @@ def changed_song_pairs(last_change: float):
     idx2 = 0
     idx4 = 0
     while idx2 < len(songs2) or idx4 < len(songs4):
-        s2 = songs2[idx2]
-        s4 = songs4[idx4]
+        if idx2 < len(songs2):
+            s2 = songs2[idx2]
+        else:
+            pairs.append((None, songs4[idx4]))
+            idx4 += 1
+            continue
+
+        if idx4 < len(songs4):
+            s4 = songs4[idx4]
+        else:
+            pairs.append((s2, None))
+            idx2 += 1
+            continue
 
         # Append matching songs and increment index on append
         if basename(s2) == basename(s4):
