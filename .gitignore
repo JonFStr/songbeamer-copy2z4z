@@ -1,3 +1,4 @@
 /__pycache__/
 rclone.conf
 /songs/
+config.py
