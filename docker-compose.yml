@@ -1,6 +1,7 @@
-version: "3.3"
 services:
-  songscopy:
+  copy2z4z:
     build:
       context: .
-    restart: "unless-stopped"
+    volumes:
+      - ./songs:/root/songs
+      - ./rclone.conf:/root/.config/rclone/rclone.conf
