@@ -5,4 +5,5 @@ services:
     volumes:
       - ./songs:/root/songs
       - ./rclone.conf:/root/.config/rclone/rclone.conf
+      - ./config.py:/app/config.py
     network_mode: bridge
