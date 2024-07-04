@@ -2,6 +2,7 @@ services:
   copy2z4z:
     build:
       context: .
+    restart: always
     volumes:
       - ./songs:/root/songs
       - ./rclone.conf:/root/.config/rclone/rclone.conf
