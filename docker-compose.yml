@@ -5,5 +5,6 @@ services:
     volumes:
       - ./songs:/root/songs
       - ./rclone.conf:/root/.config/rclone/rclone.conf
+      # IMPORTANT: copy app/config.py to ./config.py before applying this volume - otherwise the config will be empty
       - ./config.py:/app/config.py
     network_mode: bridge
