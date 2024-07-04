@@ -1,7 +1,6 @@
 services:
   copy2z4z:
-    build:
-      context: .
+    build: .
     restart: always
     volumes:
       - ./songs:/root/songs
