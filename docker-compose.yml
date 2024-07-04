@@ -6,3 +6,4 @@ services:
     volumes:
       - ./songs:/root/songs
       - ./rclone.conf:/root/.config/rclone/rclone.conf
+    network_mode: bridge
