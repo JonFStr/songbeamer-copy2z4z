@@ -4,7 +4,8 @@ services:
     restart: always
     volumes:
       - ./songs:/root/songs
-      - ./rclone.conf:/root/.config/rclone/rclone.conf
+      # Needs to be a directory because rclone updates the config with new tokens (and renames the file for stability)
+      - ./rclone:/root/.config/rclone
       # IMPORTANT: copy app/config.py to ./config.py before applying this volume - otherwise the config will be empty
       - ./config.py:/app/config.py
     network_mode: bridge
