@@ -1,3 +1,4 @@
+import sys
 import time
 from threading import Event
 
@@ -47,6 +48,7 @@ def main(exit_evt: Event):
         if changed:
             rclone.push_changes()
 
+        sys.stdout.flush()
         last_change = time.time()
         exit_evt.wait(config.delay)
 
